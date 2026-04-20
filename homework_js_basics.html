@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>作业：JavaScript 基础练习</title>
+  <style>
+    body{font-family:system-ui,Segoe UI,Roboto,Arial;margin:20px}
+    button{margin-right:8px}
+    pre{background:#f6f8fa;padding:10px;border-radius:6px}
+    .out{margin-top:12px;padding:10px;border:1px solid #eee;background:#fff}
+  </style>
+</head>
+<body>
+  <h1>作业：JavaScript 基础练习</h1>
+  <p>练习内容：变量定义、变量类型、表达式、流程控制、函数。打开控制台（F12 → Console）查看输出。</p>
+
+  <div>
+    <button id="btnVars">变量与类型</button>
+    <button id="btnExpr">表达式与流程</button>
+    <button id="btnFn">函数示例</button>
+  </div>
+
+  <div class="out" id="out">页面输出区域</div>
+
+  <pre id="sample">// 点击上方按钮运行示例</pre>
+
+  <script>
+    // 变量的定义：var / let / const
+    function varsDemo(){
+      console.clear();
+      var x = 1; // 函数作用域，可重复声明
+      let y = 'hello'; // 块作用域
+      const z = true; // 常量
+      console.log('x=', x, 'y=', y, 'z=', z);
+
+      // 类型检查
+      console.log('Types:', typeof x, typeof y, typeof z);
+
+      // 引用类型与复制行为
+      let a = {v:10};
+      let b = a; b.v = 20;
+      console.log('a.v (after b.v=20)=', a.v);
+
+      document.getElementById('out').textContent = '已在控制台输出变量与类型示例。';
+    }
+
+    // 表达式与流程控制
+    function exprDemo(){
+      console.clear();
+      let score = Math.floor(Math.random()*101);
+      console.log('score=', score);
+      if(score>=90) console.log('等级：A');
+      else if(score>=80) console.log('等级：B');
+      else if(score>=60) console.log('等级：C');
+      else console.log('等级：D');
+
+      // 三元表达式
+      let passed = score>=60 ? '通过' : '不通过';
+      console.log('通过状态：', passed);
+
+      // 循环示例
+      let arr=[10,20,30];
+      for(const [i,v] of arr.entries()) console.log(`arr[${i}]=${v}`);
+
+      document.getElementById('out').textContent = `随机分数 ${score}，详情见控制台`;
+    }
+
+    // 函数示例：声明、表达式、箭头、高阶函数
+    function fnDemo(){
+      console.clear();
+      function add(x,y){return x+y}
+      const mul = (x,y)=>x*y;
+      console.log('add(2,3)=', add(2,3));
+      console.log('mul(4,5)=', mul(4,5));
+
+      function makePow(n){ return x => Math.pow(x,n); }
+      const square = makePow(2);
+      console.log('square(6)=', square(6));
+
+      document.getElementById('out').textContent = '函数示例已输出到控制台。';
+    }
+
+    document.getElementById('btnVars').addEventListener('click', varsDemo);
+    document.getElementById('btnExpr').addEventListener('click', exprDemo);
+    document.getElementById('btnFn').addEventListener('click', fnDemo);
+
+    document.getElementById('sample').textContent = `// 示例：var/let/const\nvar x=1; let y='hi'; const z=true;`;
+  </script>
+</body>
+</html>
